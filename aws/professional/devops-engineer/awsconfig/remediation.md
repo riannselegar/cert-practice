@@ -73,3 +73,53 @@ When using **AWS Config** for remediation, **AWS Systems Manager Automation Docu
 
 4. **Cost Implications**:
    - Automated remediation actions (e.g., Lambda invocations, SSM executions) can incur additional costs. Monitor usage to avoid surprises.
+
+---
+
+# Use Cases for AWS Config Remediation Options
+
+## 1. **SSM Documents (Preferred Method)**
+SSM Documents are ideal for predefined and straightforward remediation tasks supported by AWS Config. They are the most efficient and automated option when available.
+
+### Use Cases:
+- **S3 Bucket Public Access**: Automatically remove public read/write access from an S3 bucket.
+- **IAM Key Rotation**: Disable or delete unused IAM access keys.
+- **EC2 Instance Compliance**: Stop or terminate EC2 instances that do not comply with specific configurations (e.g., unapproved AMIs).
+- **Patch Management**: Apply missing patches to EC2 instances using Systems Manager Patch Manager.
+- **Security Group Rules**: Remove overly permissive security group rules (e.g., open to 0.0.0.0/0).
+
+---
+
+## 2. **AWS Lambda for Custom Remediation**
+AWS Lambda is used for custom or complex remediation tasks that are not supported by predefined SSM Documents. It provides flexibility to handle unique scenarios.
+
+### Use Cases:
+- **Tag Enforcement**: Automatically add or correct missing tags on resources (e.g., cost center, environment).
+- **Custom Encryption Policies**: Enforce encryption on resources like EBS volumes or RDS instances that do not have encryption enabled.
+- **Custom Compliance Checks**: Validate and remediate configurations for services not natively supported by AWS Config (e.g., enforcing specific settings on DynamoDB tables).
+- **Cross-Service Remediation**: Perform actions across multiple services, such as creating a snapshot of an RDS instance and then encrypting it.
+- **Complex Multi-Step Remediation**: For example, stopping an EC2 instance, modifying its configuration, and restarting it.
+
+---
+
+## 3. **Manual Remediation**
+Manual remediation is used when automation is not feasible or when human intervention is required due to the complexity or risk of the task.
+
+### Use Cases:
+- **Approval-Based Changes**: Tasks that require managerial or compliance team approval before execution (e.g., deleting critical resources).
+- **Multi-Step Processes**: Complex workflows that involve multiple teams or systems (e.g., migrating resources to a new region).
+- **Unsupported Services**: Remediating issues for services not supported by AWS Config or automation tools (e.g., manually updating configurations for third-party integrations).
+- **Incident Response**: Addressing security incidents that require investigation and manual intervention (e.g., analyzing logs before taking action).
+- **Custom Governance Policies**: Applying organization-specific policies that cannot be automated due to their unique nature.
+
+---
+
+## Summary Table
+
+| **Option**         | **Best For**                                                                                     | **Examples**                                                                                     |
+|---------------------|-------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| **SSM Documents**   | Predefined, straightforward tasks supported by AWS Config                                       | S3 bucket public access, IAM key rotation, patch management, security group rule adjustments    |
+| **AWS Lambda**      | Custom or complex tasks requiring flexibility                                                   | Tag enforcement, custom encryption policies, cross-service remediation, complex multi-step tasks |
+| **Manual Remediation** | Tasks requiring human intervention, approval, or unsupported by automation tools               | Approval-based changes, unsupported services, incident response, custom governance policies      |
+
+By understanding the strengths and limitations of each option, you can choose the most appropriate remediation method for your use case.
