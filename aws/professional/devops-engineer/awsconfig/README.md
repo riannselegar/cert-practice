@@ -140,7 +140,3 @@ AWS Config is a service that enables you to assess, audit, and evaluate the conf
 
 5. **Videos**:
    - [AWS Config Deep Dive](https://www.youtube.com/watch?v=3X9a1F0xZcM)
-
----
-
-By focusing on the built-in capabilities and understanding the customization options, you can effectively use AWS Config to manage compliance and resource configurations in your AWS environment. Let me know if you need further clarification!

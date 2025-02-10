@@ -73,7 +73,3 @@ When using **AWS Config** for remediation, **AWS Systems Manager Automation Docu
 
 4. **Cost Implications**:
    - Automated remediation actions (e.g., Lambda invocations, SSM executions) can incur additional costs. Monitor usage to avoid surprises.
-
----
-
-By combining **AWS Config** with **SSM Documents**, **Lambda**, and **EventBridge**, you can create a robust remediation strategy for both supported and unsupported services. Let me know if you need further clarification!
